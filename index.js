@@ -140,9 +140,23 @@ function prepareFood(callBack) {
     }, 2000)
 }
 
-function myCallback(value) {
-    console.log("Value =", value);
+function prepareFrenchToast(callBack) {
+    setTimeout(() => {
+        console.log("Prepare French Toast");
+        callBack("French Toast is Ready");
+    }, 3000);
 }
+
+
+function myCallback(value) {
+    console.log("Food is Ready callback =", value);
+    prepareFrenchToast(frenchToastcallBack);
+}
+
+function frenchToastcallBack(value) {
+    console.log("French Toast is Ready callback =", value);
+}
+
 
 prepareFood(myCallback);
 
