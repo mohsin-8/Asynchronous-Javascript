@@ -2,11 +2,16 @@
 
 console.log("Before Prepare Food");
 
-function prepareFood() {
+function prepareFood(data) {
     let promise = new Promise(function (resolve, reject) {
         setTimeout(() => {
-            console.log("Prepare Food");
-            resolve("Food is Ready");
+            if (data !== 2) {
+                console.log("Prepare Food");
+                resolve("Food is Ready");
+            } else {
+                reject("value not acceptable");
+            }
+
         }, 2000)
     });
     return promise;
@@ -46,7 +51,7 @@ function prepareCoffee() {
 //     console.log("Coffee is Ready callBack =", value);
 // }
 
-let promise = prepareFood();
+let promise = prepareFood(2);
 // console.log("Promise = ", promise);
 
 promise.then(function (value) {
