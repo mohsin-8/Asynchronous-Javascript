@@ -129,6 +129,7 @@ run the callback after the calculation is finished:
 
 
 
+// Callback function
 
 
 console.log("Before Prepare Food");
@@ -147,6 +148,13 @@ function prepareFrenchToast(callBack) {
     }, 3000);
 }
 
+function prepareCoffee(callBack) {
+    setTimeout(() => {
+        console.log('Prepare Coffee');
+        callBack("Coffee is ready");
+    }, 3000)
+}
+
 
 function myCallback(value) {
     console.log("Food is Ready callback =", value);
@@ -155,8 +163,12 @@ function myCallback(value) {
 
 function frenchToastcallBack(value) {
     console.log("French Toast is Ready callback =", value);
+    prepareCoffee(CoffeecallBack);
 }
 
+function CoffeecallBack(value) {
+    console.log("Coffee is Ready callBack =", value);
+}
 
 prepareFood(myCallback);
 
