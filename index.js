@@ -1,66 +1,63 @@
-// executer
+// Async/Await function
 
-// const promise = new Promise((resolve, reject) => {
-//     setTimeout(() => {
-//         let roll_no = [1, 2, 3, 4, 5];
-//         resolve(roll_no);
-//         reject('Error while communicating');
-//     }, 2000);
-// });
+const loadData = async () => {
+    const url = "https://jsonplaceholder.typicode.com/todos/1";
+    const res = await fetch(url);
+    const data = await res.json();
+    console.log(data);
+};
 
-// const getBiodata = (indexData) => {
-//     return new Promise((resolve, reject) => {
-//         setTimeout((indexData) => {
-//             let bioData = {
-//                 name: "Mohsin",
-//                 age: 19
-//             }
-//             resolve(`My Roll no is ${indexData}. My name is ${bioData.name} and i am ${bioData.age} years old.    
-//             `);
-//         }, 2000, indexData);
-//     });
-// }
-// promise consume
-// promise.then((rollno) => {
-//     console.log(rollno);
-//     return getBiodata(rollno[1]);
-// }).then((value1) => {
-//     console.log(value1);
-// })
-//     .catch((value) => {
-//         console.log("Error =", value);
-//     })
+loadData();
 
 
+// We can handle errors using a try catch block like this:
+
+const loadData = async () => {
+    try {
+        const url = "https://jsonplaceholder.typicode.com/todos/qwe1";
+        const res = await fetch(url);
+        if (res.ok) {
+            const data = await res.json();
+            console.log(data);
+        } else {
+            console.log(res.status); // 404
+        }
+    } catch (err) {
+        console.log(err)
+    }
+};
+
+loadData();
+
+// OUTPUT
+// 404
 
 
-const promise = new Promise((resolve, reject) => {
-    setTimeout(() => {
-        let roll_no = [1, 2, 3, 4, 5];
-        resolve(roll_no);
-        // reject("Error While Communicating");
-    }, 2000);
-});
 
 
-const getBioData = (indexData) => {
-    return new Promise((resolve, reject) => {
-        setTimeout((indexData) => {
-            let BioData = {
-                name: "Mohsin Ali Khan",
-                age: 19
-            }
-            resolve(`My name is ${BioData.name} and i am ${BioData.age} years old. My Roll No. is ${indexData}`);
-        }, 2000, indexData)
-    })
-}
 
-promise.then((rollno) => {
-    console.log("Students Roll No =", rollno);
-    return getBioData(rollno[2])
-        .then((value) => {
-            console.log("Students Identity =", value);
-        })
-}).catch((error) => {
-    console.log(error);
-})
+
+
+
+
+/*
+This is one of the traits of async functions — 
+their return values are guaranteed to be 
+converted to promises. To handle data returned 
+from an async function we can use a then keyword 
+to get the data.
+*/
+
+
+const loadData = async () => {
+    try {
+        const url = 'https://jsonplaceholder.typicode.com/todos/1';
+        const res = await fetch(url);
+        const data = await res.json();
+        return data;
+    } catch (err) {
+        console.log(err);
+    }
+};
+
+const data = loadData().then(data => console.log(data));
